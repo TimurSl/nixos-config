@@ -1,0 +1,34 @@
+{ pkgs, ... }:
+{
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  #services.xserver.desktopManager.lxqt.enable = true;
+  services.flatpak.enable = true;
+
+  xdg.portal = {
+    enable = true;
+
+    # Явно указываем, что Plasma должен использовать именно KDE-портал
+    extraPortals = [
+      pkgs.kdePackages.xdg-desktop-portal-kde
+    ];
+
+    config = {
+      common.default = [ "kde" ];
+    };
+  };
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+  services.xserver.displayManager.sessionCommands = ''
+    export KWIN_DRM_NO_AMS=1
+  '';
+
+  programs.firefox.enable = true;
+
+}
