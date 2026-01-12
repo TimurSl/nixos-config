@@ -1,0 +1,27 @@
+{ config, lib, ... }:
+
+{
+  swayExtraConfig = ''
+    set $bg     #d65d0e
+    set $bg-inactive   #323232
+    set $bg-urgent     #000000
+    set $text          #eeeeec
+    set $text-inactive #babdb6
+    set $bar           #323232
+    set $statusline    #e0e0e0
+
+    default_border pixel 2
+    default_floating_border pixel 2
+    gaps inner 3px
+    gaps outer 3px
+
+    client.focused          $bg           $bg          $text          $bg $bg
+    client.unfocused        $bg-inactive  $bg-inactive $text-inactive $bar $bar
+    client.focused_inactive $bg-inactive  $bg-inactive $text-inactive $bar $bar
+    client.urgent           $bg-urgent    $bg-urgent   $text          $bar $bar
+
+    bar {
+      swaybar_command waybar
+    }
+  '';
+}
