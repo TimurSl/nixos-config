@@ -8,6 +8,7 @@ let
   bg = pkgs.stdenv.mkDerivation {
     name = "sway-bg";
     src = ./bg.jpg;
+    phases = [ "installPhase" ];
     installPhase = ''
       mkdir -p $out
       cp $src $out/bg.jpg

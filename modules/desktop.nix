@@ -7,11 +7,16 @@
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
   services.desktopManager.cosmic.enable = false;
-  services.desktopManager.gnome.enable = true;
+
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+
   #services.xserver.desktopManager.lxqt.enable = true;
   services.flatpak.enable = true;
-  
-  programs.seahorse.enable = false;  
+
+  programs.seahorse.enable = false;
 
   xdg.portal = {
     enable = true;
