@@ -10,7 +10,7 @@
     yt-dlp
     subversion
     rnote
-    bittorrent
+    #bittorrent
   ];
 
   programs.vscode = {
