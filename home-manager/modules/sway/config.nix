@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  ...
 }:
 
 let
@@ -18,10 +17,4 @@ let
     map (m: (import m { inherit config lib pkgs; }).swayExtraConfig) modules
   );
 in
-{
-  wayland.windowManager.sway = {
-    enable = true;
-    config = null;
-    extraConfig = combinedConfig;
-  };
-}
+combinedConfig

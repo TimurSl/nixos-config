@@ -8,8 +8,8 @@
   programs.zsh.enable = true;
 
   programs.bash.shellAliases = {
-    home-rebuild = "home-manager switch --flake /etc/nixos";
-    pls-nix-rebuild = "sudo nixos-rebuild switch --flake /etc/nixos";
+    home-rebuild = "home-manager switch --flake /etc/nixos && git add . && git commit -m NixConfig && git push -u origin main";
+    pls-nix-rebuild = "sudo nixos-rebuild switch --flake /etc/nixos && git add . && git commit -m NixConfig && git push -u origin main";
   };
 
   imports = [
@@ -17,7 +17,14 @@
     ./modules/games.nix
     ./modules/ue5.nix
     ./modules/tools.nix
+    ./modules/sway
+    ./modules/waybar.nix
+    ./modules/wofi.nix
   ];
+
+  my.sway.enable = true;
+  my.waybar.enable = true;
+  my.wofi.enable = true;
 
   home.packages = with pkgs; [
     git
