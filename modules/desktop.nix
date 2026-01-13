@@ -7,6 +7,7 @@
   services.displayManager.gdm.wayland = true;
 
   services.desktopManager.gnome.enable = true;
+  #services.desktopManager.plasma6.enable = true;
 
   programs.sway = {
     enable = true;
@@ -35,5 +36,5 @@
   services.flatpak.enable = true;
   programs.firefox.enable = true;
 
-  programs.seahorse.enable = false;
+#  programs.seahorse.enable = false;
 }
