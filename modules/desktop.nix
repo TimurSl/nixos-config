@@ -15,18 +15,18 @@
 
   services.desktopManager.cosmic.enable = false;
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-    ];
+  #xdg.portal = {
+  #  enable = false;
+  #  extraPortals = [
+  #    pkgs.xdg-desktop-portal-gtk
+  #  ];
 
-    config = {
-      common.default = [ "gtk" ];
-    };
-  };
+  #  config = {
+  #    common.default = [ "gtk" ];
+  #  };
+  #};
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ ];
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
