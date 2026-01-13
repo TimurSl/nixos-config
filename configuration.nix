@@ -23,6 +23,6 @@
     ./modules/drivers.nix
     ./modules/steam.nix
     ./modules/services.nix
-    ./modules/ue5.nix
+#    ./modules/ue5.nix
   ];
 }
