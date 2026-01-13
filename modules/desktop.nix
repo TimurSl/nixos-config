@@ -4,8 +4,8 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   services.displayManager.gdm.enable = true;
-  services.displayManager.gdm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.displayManager.gdm.wayland = true;
+  services.desktopManager.gnome.enable = true;
   services.desktopManager.cosmic.enable = false;
 
   programs.sway = {
