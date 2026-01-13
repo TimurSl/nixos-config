@@ -1,6 +1,6 @@
 { config, ... }: {
   hardware.nvidia = {
-    modesetting.enable = false;
+    modesetting.enable = true;
     open = true;
     nvidiaSettings = true;
 #    persistenced = false;
