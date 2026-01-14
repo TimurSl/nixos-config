@@ -31,6 +31,7 @@
     pulseaudio
     ntfs3g
     ripgrep
+    gnome-tweaks
   ];
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.05";
