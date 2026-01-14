@@ -26,6 +26,14 @@
   my.waybar.enable = true;
   my.wofi.enable = true;
 
+  home.pointerCursor = {
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 32;
+  };
+  gtk.cursorTheme.package = pkgs.bibata-cursors;
+  gtk.cursorTheme.name = "Bibata-Modern-Ice";
+
   home.packages = with pkgs; [
     git
     zip
