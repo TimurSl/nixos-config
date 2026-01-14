@@ -1,10 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
-    materialgram 
+    materialgram
     zoom-us
     (discord.override {
       withOpenASAR = false;
-      withEquicord = false;
+      withEquicord = true;
       withVencord = false;
     })
     teamspeak6-client
