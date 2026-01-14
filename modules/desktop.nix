@@ -1,13 +1,15 @@
 { pkgs, ... }:
 
 {
-  services.xserver.enable = false;
+  services.xserver.enable = true;
 
   services.displayManager.gdm.enable = true;
   services.displayManager.gdm.wayland = true;
 
+  #services.desktopManager.gnome.enable = true;
+  #services.gnome.gnome-keyring.enable = false;
   services.desktopManager.gnome.enable = true;
-  #services.desktopManager.plasma6.enable = true;
+  services.xserver.desktopManager.xfce.enable = true;
 
   programs.sway = {
     enable = true;
@@ -36,5 +38,11 @@
   services.flatpak.enable = true;
   programs.firefox.enable = true;
 
-#  programs.seahorse.enable = false;
+  #programs.seahorse.enable = false;
+  #security.pam.services = {
+  #  login.enableGnomeKeyring = false;
+  #  gdm.enableGnomeKeyring = false;
+  #  sddm.enableGnomeKeyring = false;
+  #  sudo = {};
+  #};
 }
