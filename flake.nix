@@ -17,30 +17,43 @@
     };
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager, lanzaboote, ... }:
-  let
-    system = "x86_64-linux";
-  in {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      inherit system;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      unstable,
+      home-manager,
+      lanzaboote,
+      ...
+    }:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      root = self;
+    in
+    {
 
-      modules = [
-        ./configuration.nix
-        lanzaboote.nixosModules.lanzaboote
-      ];
+      packages.${system}.dwl-dinexxl = pkgs.callPackage (self + "/pkgs/dwl-dinexxl/default.nix") { };
 
-      specialArgs = {
-        unstablePkgs = import unstable {
-      	  inherit system;
-      	  config.allowUnfree = true;
-    	};
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        inherit system;
+
+        modules = [
+          ./configuration.nix
+          lanzaboote.nixosModules.lanzaboote
+        ];
+
+        specialArgs = {
+          unstablePkgs = import unstable {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        };
       };
-    };
 
-    homeConfigurations.tymur =
-      home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.tymur = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
         modules = [ ./home-manager/home.nix ];
       };
-  };
+    };
 }

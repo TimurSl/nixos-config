@@ -1,0 +1,28 @@
+{
+  pkgs,
+  ...
+}:
+{
+  environment.systemPackages = with pkgs; [
+    JetBrainsMono
+    wbg
+    wmenu
+    foot
+    grim
+    wl-clipboard
+    slurp
+    libinput
+    wayland
+    wlroots_0_18
+    xkbcommon
+    wayland-protocols
+    pkg-config
+    libxcb
+    libxcbwm
+    wlroots
+    xwayland
+    xdg-desktop-portal
+    xdg-desktop-portal-wlr
+    tllist
+  ];
+}
