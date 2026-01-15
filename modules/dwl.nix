@@ -4,7 +4,7 @@
 }:
 {
   environment.systemPackages = with pkgs; [
-    JetBrainsMono
+    texlivePackages.jetbrainsmono-otf
     wbg
     wmenu
     foot
@@ -14,11 +14,11 @@
     libinput
     wayland
     wlroots_0_18
-    xkbcommon
+    libxkbcommon
     wayland-protocols
     pkg-config
     libxcb
-    libxcbwm
+    libxcb-wm
     wlroots
     xwayland
     xdg-desktop-portal
