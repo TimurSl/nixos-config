@@ -41,6 +41,7 @@
         modules = [
           ./configuration.nix
           lanzaboote.nixosModules.lanzaboote
+          ./modules/dwl.nix
         ];
 
         specialArgs = {
@@ -48,6 +49,8 @@
             inherit system;
             config.allowUnfree = true;
           };
+
+          flakeSelf = self;
         };
       };
 

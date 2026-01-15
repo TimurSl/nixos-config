@@ -1,5 +1,7 @@
 {
+  config,
   pkgs,
+  flakeSelf,
   ...
 }:
 {
@@ -24,5 +26,17 @@
     xdg-desktop-portal
     xdg-desktop-portal-wlr
     tllist
+    (flakeSelf.packages.${pkgs.stdenv.hostPlatform.system}.dwl-dinexxl)
+
   ];
+
+  environment.etc."wayland-sessions/dwl.desktop".text = ''
+    [Desktop Entry]
+    Name=dwl
+    Comment=Dynamic Window Manager for Wayland
+    Exec=dwl
+    Type=Application
+    DesktopNames=dwl
+  '';
+
 }
