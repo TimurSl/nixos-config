@@ -1,13 +1,44 @@
-{ lib, stdenv, fetchgit, pkg-config, wayland, wlroots, libinput, xorg }:
+{
+  stdenv,
+  fetchgit,
+  pkg-config,
+  wayland,
+  wlroots_0_18,
+  libinput,
+  libxkbcommon,
+  wayland-protocols,
+  libxcb,
+  libxcb-wm,
+  xwayland,
+  xdg-desktop-portal,
+  xdg-desktop-portal-wlr,
+  tllist,
+  jetbrains-mono,
+  wbg,
+  wmenu,
+  foot,
+  grim,
+  wl-clipboard,
+  slurp,
+  lib,
+  pixman,
+  fcft,
+  dbus,
+  gcc,
+  gnumake,
+  libdrm,
+  wayland-scanner,
+  ...
+}:
 
 stdenv.mkDerivation rec {
-  pname = "dwl-dinex";
+  pname = "dwl-dinexxl";
   version = "2026-01-15";
 
   src = fetchgit {
     url = "https://codeberg.org/DINEXXL/dwl-dotfiles.git";
-    rev = "master";
-    sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    rev = "main";
+    sha256 = "sha256-FozRR3eO2q/7s34ocy8jkPtYcIhoNBQ6MYidY1aK3Is=";
   };
 
   nativeBuildInputs = [
@@ -16,34 +47,60 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     wayland
-    wlroots
+    wlroots_0_18
     libinput
-    xorg.libX11
-    xorg.libXcursor
+    libxkbcommon
+    wayland-protocols
+    libxcb
+    libxcb-wm
+    xwayland
+    xdg-desktop-portal
+    xdg-desktop-portal-wlr
+    tllist
+
+    jetbrains-mono
+    wbg
+    wmenu
+    foot
+    grim
+    wl-clipboard
+    slurp
+
+    pixman
+    fcft
+    dbus
+    gcc
+    gnumake
+    libdrm
+    wayland-scanner
   ];
 
-  # Патчи, если есть *.patch в репозитории
-  patches = lib.optional (builtins.pathExists "${src}/patches") (lib.mapAttrsToList (_: v: "${src}/patches/${v}") (builtins.readDir "${src}/patches"));
+  patches = lib.optionals (builtins.pathExists "${src}/patches") (
+    map (p: "${src}/patches/${p}") (builtins.attrNames (builtins.readDir "${src}/patches"))
+  );
 
   postPatch = ''
-    # Если в репе есть config.h — копируем
     if [ -f ${src}/config.h ]; then
-        cp ${src}/config.h config.h
+      cp ${src}/config.h config.h
     fi
   '';
 
-  makeFlags = [
-    "PREFIX=$(out)"
-  ];
-
+  # Makefile DINEXXL не поддерживает PREFIX нормально
+  # Поэтому ручной installPhase === единственно корректный способ
   installPhase = ''
-    make clean install
+    mkdir -p $out/bin
+    cp dwl $out/bin/
+
+    # Если есть дополнительные скрипты или темы:
+    if [ -d scripts ]; then
+      mkdir -p $out/share/dwl/scripts
+      cp -r scripts/* $out/share/dwl/scripts/
+    fi
   '';
 
-  meta = with lib; {
-    description = "dwl build from DINEXXL dotfiles";
-    license = licenses.mit;
-    platforms = platforms.linux;
+  meta = {
+    description = "DINEXXL patched dwl build with systray, centered title, bar, autostart, etc.";
+    platforms = lib.platforms.linux;
+    license = lib.licenses.mit;
   };
 }
-
