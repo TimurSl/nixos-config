@@ -33,12 +33,14 @@
     self.packages.${pkgs.system}.dwl-dinexxl
   ];
 
-  environment.etc."xdg/wayland-sessions/dwl.desktop".text = ''
+  environment.etc."xdg/xsessions/dwl.desktop".text = ''
     [Desktop Entry]
     Name=dwl
     Comment=Dynamic Window Manager for Wayland
     Exec=${self.packages.${pkgs.system}.dwl-dinexxl}/bin/dwl
     Type=Application
+    X-GDM-Session=custom
+    X-LightDM-DesktopName=dwl
     DesktopNames=dwl
   '';
 
