@@ -1,9 +1,12 @@
 {
   config,
   pkgs,
-  flakeSelf,
+  lib,
+  self,
+  system,
   ...
 }:
+
 {
   environment.systemPackages = with pkgs; [
     texlivePackages.jetbrainsmono-otf
@@ -26,17 +29,16 @@
     xdg-desktop-portal
     xdg-desktop-portal-wlr
     tllist
-    (flakeSelf.packages.${pkgs.stdenv.hostPlatform.system}.dwl-dinexxl)
 
+    self.packages.${pkgs.system}.dwl-dinexxl
   ];
 
   environment.etc."wayland-sessions/dwl.desktop".text = ''
     [Desktop Entry]
     Name=dwl
     Comment=Dynamic Window Manager for Wayland
-    Exec=dwl
+    Exec=${self.packages.${pkgs.system}.dwl-dinexxl}/bin/dwl
     Type=Application
     DesktopNames=dwl
   '';
-
 }

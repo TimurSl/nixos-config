@@ -11,6 +11,7 @@
     subversion
     rnote
     #bittorrent
+
   ];
 
   programs.vscode = {

@@ -33,7 +33,7 @@
     in
     {
 
-      packages.${system}.dwl-dinexxl = pkgs.callPackage (self + "/pkgs/dwl-dinexxl/default.nix") { };
+      packages.${system}.dwl-dinexxl = pkgs.callPackage ./pkgs/dwl-dinexxl/default.nix { };
 
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
@@ -41,7 +41,6 @@
         modules = [
           ./configuration.nix
           lanzaboote.nixosModules.lanzaboote
-          ./modules/dwl.nix
         ];
 
         specialArgs = {
@@ -49,8 +48,7 @@
             inherit system;
             config.allowUnfree = true;
           };
-
-          flakeSelf = self;
+          inherit self;
         };
       };
 
