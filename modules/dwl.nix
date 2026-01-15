@@ -33,7 +33,7 @@
     self.packages.${pkgs.system}.dwl-dinexxl
   ];
 
-  environment.etc."wayland-sessions/dwl.desktop".text = ''
+  environment.etc."xdg/wayland-sessions/dwl.desktop".text = ''
     [Desktop Entry]
     Name=dwl
     Comment=Dynamic Window Manager for Wayland
@@ -41,4 +41,5 @@
     Type=Application
     DesktopNames=dwl
   '';
+
 }

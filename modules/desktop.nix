@@ -3,13 +3,14 @@
 {
   services.xserver.enable = true;
 
-  services.displayManager.gdm.enable = true;
-  services.displayManager.gdm.wayland = true;
+  services.displayManager.gdm.enable = false;
+  services.displayManager.gdm.wayland = false;
 
   #services.desktopManager.gnome.enable = true;
   #services.gnome.gnome-keyring.enable = false;
   services.desktopManager.gnome.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
+  services.displayManager.ly.enable = true;
 
   programs.sway = {
     enable = true;
