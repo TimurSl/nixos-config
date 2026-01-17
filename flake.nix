@@ -29,6 +29,12 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+
+      unstablePkgs = import unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
       root = self;
     in
     {
@@ -55,6 +61,10 @@
       homeConfigurations.tymur = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
         modules = [ ./home-manager/home.nix ];
+
+        extraSpecialArgs = {
+          inherit unstablePkgs self;
+        };
       };
     };
 }

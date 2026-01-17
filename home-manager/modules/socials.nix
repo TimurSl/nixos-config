@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, unstablePkgs, ... }:
 {
   home.packages = with pkgs; [
     materialgram
     zoom-us
-    (discord.override {
+    (unstablePkgs.discord.override {
       withOpenASAR = false;
       withEquicord = true;
       withVencord = false;
