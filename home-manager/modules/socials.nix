@@ -9,5 +9,6 @@
       withVencord = false;
     })
     teamspeak6-client
+    halloy
   ];
 }
