@@ -5,5 +5,6 @@
     mangohud
     protonup-qt
     obs-studio
+    prismlauncher
   ];
 }

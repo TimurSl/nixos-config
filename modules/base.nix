@@ -32,6 +32,10 @@
     ntfs3g
     ripgrep
     gnome-tweaks
+    #haskellPackages.webkitgtk3
+    webkitgtk_6_0
+    webkitgtk_4_1
+    syncthing
   ];
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.05";

@@ -197,6 +197,9 @@
         xorg.xkeyboardconfig
         xz
         zlib
+        webkitgtk_4_1
+        webkitgtk_6_0
+        libsoup_3
       ]
     );
   };

@@ -4,10 +4,11 @@
     materialgram
     zoom-us
     (unstablePkgs.discord.override {
-      withOpenASAR = false;
+      withOpenASAR = true;
       withEquicord = true;
       withVencord = false;
     })
+    unstablePkgs.goofcord
     teamspeak6-client
     halloy
   ];
