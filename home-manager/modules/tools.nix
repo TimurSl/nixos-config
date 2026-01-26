@@ -11,7 +11,7 @@
     subversion
     rnote
     qbittorrent
-
+    jetbrains.clion
   ];
 
   programs.vscode = {
