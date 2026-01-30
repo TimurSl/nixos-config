@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, unstablePkgs, ... }:
 {
   home.packages = with pkgs; [
     krita
@@ -12,6 +12,7 @@
     rnote
     qbittorrent
     jetbrains.clion
+    unstablePkgs.bambu-studio
   ];
 
   programs.vscode = {
